@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Belt Reviewer: Login and Registration</title>
+        {%load staticfiles%}
+        <link rel="stylesheet" href="{% static 'belt_app/css/style.css'%}" charset="utf-8">
+    </head>
+    <body>
+        <div id="wrapper">
+        <h3>Welcome!</h3>
+        {% if messages %}
+            {% for message in messages %}
+                <p class="error">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <h4>Register:</h4>
+        <form action="/register/process" method="post" class="form">
+        {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" name="name"><br>
+            <label for="last_name">Alias:</label>
+            <input type="text" name="alias"><br>
+            <label for="email">Email:</label>
+            <input type="text" name="email"><br>
+            <p class="small">*Password should be at least 8 characters*</p>
+            <label for="password">Password:</label>
+            <input type="text" name="password"><br>
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="text" name="confirm_password"><br><br>
+            <input type="submit" value="Register">
+        </form>
+        <h4>Login:</h4>
+        <form action="/login" method="post" class="form">
+        {% csrf_token %}
+            <label for="email">Email:</label>
+            <input type="text" name="email"><br>
+            <label for="password">Password:</label>
+            <input type="text" name="password"><br><br>
+            <input type="submit" value="Login">
+        </form>
+        </div>
+    </body>
+</html>

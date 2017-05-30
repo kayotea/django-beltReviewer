@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Belt Reviewer: Add Book</title>
+        {%load staticfiles%}
+        <link rel="stylesheet" href="{% static 'belt_app/css/style.css'%}" charset="utf-8">
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="header">
+                <p class="right"><a href="{% url 'logout'%}">Logout</a></p>
+                <p class="right"><a href="{% url 'home'%}">Home</a></p>
+            </div>
+            <h3>Add a New Book Title and a Review:</h3>
+            <!--ROUTE THIS CORRECTLY LATER-->
+            <form action="/books/add/process" method="post" class="form">
+            {% csrf_token %}
+                <label for="title">Book Title:</label>
+                <input type="text" name="title"><br>
+                <label for="author">Author:</label><br>
+                Choose from the list:
+                <select name="author1">
+                    {% for author in authors%}
+                        <option value="{{author.id}}">{{author.name}}</option>
+                    {% endfor %}
+                </select><br>
+                Or add a new author:
+                <input type="text" name="author2"><br>
+                <label for="review">Review:</label>
+                <textarea rows="5" cols="50" name="review"></textarea>
+                Rating:
+                <select name="stars">
+                    <option value="1">1 star</option>
+                    <option value="2">2 stars</option>
+                    <option value="3">3 stars</option>
+                    <option value="4">4 stars</option>
+                    <option value="5">5 stars</option>
+                </select><br>
+                <input type="submit" value="Add Book and Submit">
+            </form>
+        </div>
+    </body>
+</html>
